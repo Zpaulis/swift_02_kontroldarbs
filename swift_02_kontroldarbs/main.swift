@@ -29,6 +29,7 @@ let persona2 = [key1: "Irmgarde", key2: "Otrā", key3: "strādniece", key4: "Otr
 let persona3 = [key1: "Daivis", key2: "Trešais", key3: "brigadieris", key4: "Trešā līnija 7", key5: "Liepāja"]
 let persona4 = [key1: "Valda", key2: "Ceturtā", key3: "brigadiere", key4: "Ceturtā līnija 9", key5: "Jelgava"]
 let persona5 = [key1: "Vija", key2: "Piektā", key3: "direktore", key4: "Piektā līnija 11", key5: "Ventspils"]
+let personaNonGrata = [key1: "Džeimss", key2: "Bonds", key3: "Aģents 007", key4: nil, key5: "Londona"]
 /*
     e) Visus personu dictionary pievienot galvenajam masīvam.
  */
@@ -37,9 +38,19 @@ personas = [persona1, persona2, persona3, persona4, persona5]
  3) Datu attēlošana
     a) Uzrakstīt funkciju ar parametru, kas ir personas dictionary. Funkcijai vienā rindā ir jāizvada visi personas dati: vārds, uzvārds utt.
  */
-func printLine(_ dati: [String: String]) {
+func printLine(_ dati: [String: String?]) {
+    /*
+     Piezīmes:
+     • Ņemt vērā ka dictionary elementa vērtība ir optional. Pirms tās lietošanas to ir jāpārbauda uz nil.
+     • Kompilējot nav jābūt neviena brīdinājuma (warning).
+     */
+    let vardsPrint = dati["Vārds"] as? String ?? "!!! NAV VĀRDA !!!"
+    let uzvardsPrint = dati["Uzvārds"] as? String ?? "!!! NAV UZVĀRDA !!!"
+    let amatsPrint = dati["Amats"] as? String ?? "!!! NAV AMATA !!!"
+    let adresePrint = dati["Adrese"] as? String ?? "!!! NAV ADRESES !!!"
+    let pilsetaPrint = dati["Pilsēta"] as? String ?? "!!! NAV PILSĒTAS !!!"
 
-  let printString = "Persona: " + dati[key1]! + " " + dati[key2]! + ", " + dati[key3]! + ", adrese: " + dati[key4]! + ", " + dati[key5]!
+  let printString = "Persona: " + vardsPrint + " " + uzvardsPrint + ", " + amatsPrint + ", adrese: " + adresePrint + ", " + pilsetaPrint
   print(printString)
 }
 /*
@@ -64,7 +75,7 @@ printLine(persona)
 }
 }
 // Izvada vienas personas datus vienā rindā
-printLine(persona2)
+printLine(personaNonGrata)
 
 // Izvada visu personu datus
 printAll(personas)
