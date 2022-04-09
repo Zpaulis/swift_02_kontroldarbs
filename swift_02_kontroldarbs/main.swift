@@ -12,7 +12,7 @@ import Foundation
     a) Personu datus izveidot kā masīvu no atsevišķām personām.
     b) Katrs masīva elements (persona) ir asociatīvs masīvs (turpmāk dictionary) ar veidu [String:String].
  */
-var personas: [[String: String]]
+var personas: [[String: String?]]
 /*
     c) Nodefinēt 4-5 atslēgas kā konstantes (let), piemēram: vārds, uzvārds, adrese, utt.
  */
@@ -33,7 +33,7 @@ let personaNonGrata = [key1: "Džeimss", key2: "Bonds", key3: "Aģents 007", key
 /*
     e) Visus personu dictionary pievienot galvenajam masīvam.
  */
-personas = [persona1, persona2, persona3, persona4, persona5]
+personas = [persona1, persona2, persona3, persona4, persona5, personaNonGrata]
 /*
  3) Datu attēlošana
     a) Uzrakstīt funkciju ar parametru, kas ir personas dictionary. Funkcijai vienā rindā ir jāizvada visi personas dati: vārds, uzvārds utt.
@@ -56,7 +56,7 @@ func printLine(_ dati: [String: String?]) {
 /*
     b) Uzrakstīt citu funkciju ar parametru, kas ir masīvs no personu dictionary, kas ciklā izsauc iepriekšējo funkciju un attēlo visas personas.
  */
-func printAll(_ dati: [[String : String]]) {
+func printAll(_ dati: [[String : String?]]) {
   print ("\n")
 for persona in dati {
 printLine(persona)
@@ -65,10 +65,10 @@ printLine(persona)
 /*
     c) Bonusa uzdevums: otrajai funkcijai paredzēt otro parametru String, kas ir kāda no dictionary atslēgām. Funkcijā izveidot masīva šķirošanu pēc dotās atslēgas (pēc vārda, uzvārda, utt)
  */
-func printAllSorted(_ dati: [[String : String]], _ key: String) {
+func printAllSorted(_ dati: [[String : String?]], _ key: String) {
     print ("\n")
   let sortedPersons = dati.sorted {
-    $0[key]! < $1[key]!
+    $0[key]!! < $1[key]!!
   }
 for persona in sortedPersons {
 printLine(persona)
