@@ -34,6 +34,7 @@ let personaNonGrata = [key1: "Džeimss", key2: "Bonds", key3: "Aģents 007", key
     e) Visus personu dictionary pievienot galvenajam masīvam.
  */
 personas = [persona1, persona2, persona3, persona4, persona5, personaNonGrata]
+
 /*
  3) Datu attēlošana
     a) Uzrakstīt funkciju ar parametru, kas ir personas dictionary. Funkcijai vienā rindā ir jāizvada visi personas dati: vārds, uzvārds utt.
@@ -63,6 +64,7 @@ for persona in dati {
 printLine(persona)
 }
 }
+
 /*
     c) Bonusa uzdevums: otrajai funkcijai paredzēt otro parametru String, kas ir kāda no dictionary atslēgām. Funkcijā izveidot masīva šķirošanu pēc dotās atslēgas (pēc vārda, uzvārda, utt)
  */
@@ -85,13 +87,11 @@ printLine(persona)
 func unwrappDict(dictOptValue: [[String : String?]]) -> ([[String : String]]) {
     var noNilDict: [[String : String]] = []
     for element in dictOptValue {
-    let noNilElement = element.mapValues {$0 ?? "!!! NAV DATU !!!"}
+    let noNilElement = element.mapValues {$0 ?? "🤗 NAV DATU!"}
         noNilDict.append(noNilElement)
     }
     return (noNilDict)
 }
-
-
 
 // Izvada vienas personas datus vienā rindā.
 printLine(personaNonGrata)
@@ -100,5 +100,5 @@ printLine(personaNonGrata)
 printAll(personas)
 
 // Izvada visu personu datus, sakārtotus pēc atslēgas
-printAllSorted(personas, key4)
+printAllSorted(personas, key1)
 
