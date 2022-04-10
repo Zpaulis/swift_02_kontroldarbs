@@ -51,30 +51,30 @@ func printLine(_ dati: [String: String?]) {
     let amatsPrint = dati["Amats"] as? String ?? "!!! NAV AMATA !!!"
     let adresePrint = dati["Adrese"] as? String ?? "!!! NAV ADRESES !!!"
     let pilsetaPrint = dati["Pilsēta"] as? String ?? "!!! NAV PILSĒTAS !!!"
-
-  let printString = "Persona: " + vardsPrint + " " + uzvardsPrint + ", " + amatsPrint + ", adrese: " + adresePrint + ", " + pilsetaPrint
-  print(printString)
+    
+    let printString = "Persona: \(vardsPrint) \(uzvardsPrint), \(amatsPrint), adrese: \(adresePrint), \(pilsetaPrint)"
+    print(printString)
 }
 /*
     b) Uzrakstīt citu funkciju ar parametru, kas ir masīvs no personu dictionary, kas ciklā izsauc iepriekšējo funkciju un attēlo visas personas.
  */
 func printAll(_ dati: [[String : String?]]) {
-  print ("\n")
-for persona in dati {
-printLine(persona)
-}
+    print ("\n")
+    for persona in dati {
+        printLine(persona)
+    }
 }
 
 /*
-    c) Bonusa uzdevums: otrajai funkcijai paredzēt otro parametru String, kas ir kāda no dictionary atslēgām. Funkcijā izveidot masīva šķirošanu pēc dotās atslēgas (pēc vārda, uzvārda, utt)
+ c) Bonusa uzdevums: otrajai funkcijai paredzēt otro parametru String, kas ir kāda no dictionary atslēgām. Funkcijā izveidot masīva šķirošanu pēc dotās atslēgas (pēc vārda, uzvārda, utt)
  */
 func printAllSorted(_ dati: [[String : String?]], _ key: String) {
     print ("\n")
     let noNilDati = unwrappDict(dictOptValue: dati)
-  let sortedPersons = noNilDati.sorted { $0[key]! < $1[key]! }
-for persona in sortedPersons {
-printLine(persona)
-}
+    let sortedPersons = noNilDati.sorted { $0[key]! < $1[key]! }
+    for persona in sortedPersons {
+        printLine(persona)
+    }
 }
 
 /*
@@ -87,7 +87,7 @@ printLine(persona)
 func unwrappDict(dictOptValue: [[String : String?]]) -> ([[String : String]]) {
     var noNilDict: [[String : String]] = []
     for element in dictOptValue {
-    let noNilElement = element.mapValues {$0 ?? "🤗 NAV DATU!"}
+        let noNilElement = element.mapValues {$0 ?? "🤗 NAV DATU!"}
         noNilDict.append(noNilElement)
     }
     return (noNilDict)
