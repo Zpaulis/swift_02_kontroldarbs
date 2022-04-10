@@ -68,20 +68,28 @@ printLine(persona)
  */
 func printAllSorted(_ dati: [[String : String?]], _ key: String) {
     print ("\n")
-    
-    var noNilDati: [[String : String]] = []
-    for element in dati {
-    let noNilElement = element.mapValues {$0 ?? "!!! NAV DATU !!!"}
-        noNilDati.append(noNilElement)
-    }
-  let sortedPersons = noNilDati.sorted {
-    $0[key]! < $1[key]!
-  }
+    let noNilDati = unwrappDict(dictOptValue: dati)
+  let sortedPersons = noNilDati.sorted { $0[key]! < $1[key]! }
 for persona in sortedPersons {
 printLine(persona)
 }
 }
 
+/*
+ Piezīmes:
+ • Ņemt vērā ka dictionary elementa vērtība ir optional. Pirms tās lietošanas to ir jāpārbauda uz nil.
+ • Kompilējot nav jābūt neviena brīdinājuma (warning).
+ VARIANTS B - aizvietot nil Values visā dictionry masīvā:
+ */
+
+func unwrappDict(dictOptValue: [[String : String?]]) -> ([[String : String]]) {
+    var noNilDict: [[String : String]] = []
+    for element in dictOptValue {
+    let noNilElement = element.mapValues {$0 ?? "!!! NAV DATU !!!"}
+        noNilDict.append(noNilElement)
+    }
+    return (noNilDict)
+}
 
 
 
