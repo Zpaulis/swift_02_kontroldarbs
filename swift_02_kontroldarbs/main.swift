@@ -43,6 +43,7 @@ func printLine(_ dati: [String: String?]) {
      Piezīmes:
      • Ņemt vērā ka dictionary elementa vērtība ir optional. Pirms tās lietošanas to ir jāpārbauda uz nil.
      • Kompilējot nav jābūt neviena brīdinājuma (warning).
+     VARIANTS A - pārbaudīt katru dictionary elementu:
      */
     let vardsPrint = dati["Vārds"] as? String ?? "!!! NAV VĀRDA !!!"
     let uzvardsPrint = dati["Uzvārds"] as? String ?? "!!! NAV UZVĀRDA !!!"
@@ -67,19 +68,29 @@ printLine(persona)
  */
 func printAllSorted(_ dati: [[String : String?]], _ key: String) {
     print ("\n")
-  let sortedPersons = dati.sorted {
-    $0[key]!! < $1[key]!!
+    
+    var noNilDati: [[String : String]] = []
+    for element in dati {
+    let noNilElement = element.mapValues {$0 ?? "!!! NAV DATU !!!"}
+        noNilDati.append(noNilElement)
+    }
+  let sortedPersons = noNilDati.sorted {
+    $0[key]! < $1[key]!
   }
 for persona in sortedPersons {
 printLine(persona)
 }
 }
-// Izvada vienas personas datus vienā rindā
+
+
+
+
+// Izvada vienas personas datus vienā rindā.
 printLine(personaNonGrata)
 
 // Izvada visu personu datus
 printAll(personas)
 
 // Izvada visu personu datus, sakārtotus pēc atslēgas
-printAllSorted(personas, key5)
+printAllSorted(personas, key4)
 
