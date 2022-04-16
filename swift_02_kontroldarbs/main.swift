@@ -71,7 +71,15 @@ func printAll(_ dati: [[String : String?]]) {
 func printAllSorted(_ dati: [[String : String?]], _ key: String) {
     print ("\n")
     let noNilDati = unwrappDict(dictOptValue: dati)
-    let sortedPersons = noNilDati.sorted { $0[key]! < $1[key]! }
+    let sortedPersons = noNilDati.sorted {
+        if let a = $0[key], let b = $1[key] {
+          return a > b
+        }
+        else {
+          return false
+        }
+        //$0[key]! < $1[key]!
+    }
     for persona in sortedPersons {
         printLine(persona)
     }
